@@ -29,7 +29,7 @@
                            <input id="oneValue" type="text" class="form-control text-center" value="1">
                            <button id="plusBtn" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$<span id="oneBalance">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="minusBtntwo" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="twoValue" type="text" class="form-control text-center" value="1">
+                           <button id="plusBtnTwo" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$59</h5>
+                        <h5>$<span id="twoBalance">60</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -83,19 +83,34 @@
       var plusBtn = document.getElementById('plusBtn');
       plusBtn.addEventListener("click", function() {
          incrimentValue('oneValue');
+
+         productBalanceIncriment('oneBalance', 1219);
+
       })
 
       var minusBtn = document.getElementById('minusBtn');
       minusBtn.addEventListener("click", function() {
          decrimentValue('oneValue')
+
+         ProductBalanceDecriment('oneBalance', 1219);
+      })
+
+     var plusBtnTwo = document.getElementById('plusBtnTwo');
+      plusBtnTwo.addEventListener("click", function () {
+         incrimentValue('twoValue');
+         productBalanceIncriment('twoBalance', 60);
+      })
+
+     var minusBtntwo = document.getElementById('minusBtntwo');
+      minusBtntwo.addEventListener("click", function () {
+         decrimentValue('twoValue');
+         ProductBalanceDecriment('twoBalance', 60);
       })
 
       function incrimentValue(id) {
-         var value = parseInt(document.getElementById('oneValue').value);
-         if (value < 100) {
+         var value = parseInt(document.getElementById(id).value);
             value++;
             document.getElementById(id).value = value;
-         }
       }
 
       function decrimentValue(id) {
@@ -104,6 +119,19 @@
             value--;
             document.getElementById(id).value = value;
          }
+      }
+
+      function productBalanceIncriment(id, amount) {
+         var oneBalance = parseFloat(document.getElementById(id).innerText);
+         var prt = document.getElementById(id).innerText = oneBalance + amount;
+      }
+
+      function ProductBalanceDecriment(id, amount) {
+            var oneBalance = parseFloat(document.getElementById(id).innerText);
+            if (oneBalance > amount) {
+            var prt = document.getElementById(id).innerText = oneBalance - amount;
+         }
+         
       }
    </script>
 </body>
