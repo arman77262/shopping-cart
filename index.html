@@ -65,8 +65,8 @@
 
                      <div class="col-md-4 status">
                         <h5>$<span id="subtotal">1278</span></h5>
-                        <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$<span id="tax">0</span></h5>
+                        <h5>$<span id="total">1278</span></h5>
                      </div>
                   </div>
                </div>
@@ -84,26 +84,32 @@
       plusBtn.addEventListener("click", function() {
          incrimentValue('oneValue');
          productBalanceIncriment('oneBalance', 1219);
-
+         uptax();
+         total()
       })
 
       var minusBtn = document.getElementById('minusBtn');
       minusBtn.addEventListener("click", function() {
          decrimentValue('oneValue')
-
          ProductBalanceDecriment('oneBalance', 1219);
+         uptax()
+         total()
       })
 
      var plusBtnTwo = document.getElementById('plusBtnTwo');
       plusBtnTwo.addEventListener("click", function () {
          incrimentValue('twoValue');
          productBalanceIncriment('twoBalance', 60);
+         uptax();
+         total()
       })
 
      var minusBtntwo = document.getElementById('minusBtntwo');
       minusBtntwo.addEventListener("click", function () {
          decrimentValue('twoValue');
          ProductBalanceDecriment('twoBalance', 60);
+         uptax();
+         total()
       })
 
       function incrimentValue(id) {
@@ -136,9 +142,29 @@
             var subtotal = parseInt(document.getElementById('subtotal').innerText);
             document.getElementById('subtotal').innerText = subtotal - amount;
          }
-         
       }
+
+      function uptax() {
+         var tax = parseInt(document.getElementById('tax').innerText);
+         var subtotal = parseInt(document.getElementById('subtotal').innerText);
+         tax = subtotal * 0.018;
+         document.getElementById('tax').innerText = parseInt(tax);
+      }
+
+      function total() {
+         var tax = parseInt(document.getElementById('tax').innerText);
+         var subtotal = parseInt(document.getElementById('subtotal').innerText);
+         var total = parseInt(document.getElementById('total').innerText);
+         total = subtotal + tax;
+         document.getElementById('total').innerText = total;
+      }
+      
    </script>
 </body>
 
 </html>
+
+
+
+
+
